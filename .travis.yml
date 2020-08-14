@@ -1,7 +1,15 @@
 language: go
+addons:
+    sonarcloud:
+        organization: "archit-p"
+        token:
+            secure: "GKqy8ZGgF0sHUeZuqCLzXzChctyX3ZfPcyZxl0L8rKQ7e8pewUSfTNeCy4ap71J8DBbquTikhprqthlvnRyw18bSGNAbtx54rgmLTrVax+GUp47UWRMevAXffMMGLZFCLvLwc+OR5ghQ5F+SUUp1Gn2JhTaVru+DFpL/+LNFSE+pyUIG7VzcrFQ2PPO8HUMB9u2SItaS9qDZ+thxrVVjMjmiN9hZ3Ook2w1dahsBqNHVfmX+Qt59wEOs86LSi0gH5dnAupg1W6UqrpehCpBVdB/hR2ePMPkKUPPiSNm6O9Z55V35mNQLhv6q0AT4IDTYeZ3B2ZsIfW0k0WtnN2IjuMs/LKybYe4X0xDY/Sn8J+mtHbvSBfFVJWgdFXw0KbnkcMhvVwLA8cIckpnkYcT9Q3fGmLdLCUQr0AreXypYu7m9baA8FWQUucuH88cnDp10JuNJsh0k/LpFUYtRP3iVO5AlhENWLVk5vNEIPMzaWKO+1Y5gJe5wFNhHuImeRZqVbG3n6lOckgkFgIQUDeHTmbvE6DOgDnTEqolmivPIsXRH27Y+jqPSfRlze1rsggQN9tKjYYx6H9CuJscLsldGLHLlX3jxpDchphj6PL3xt1sUk9/gcSk9ci4Wn7N5rNOeJjI3Tmow4lBAdi2EIwSQFGhxEfiHMp/ym/JcgeY+4ro="
 
 go:
     - 1.14.x
+
+script:
+    - sonar-scanner
 
 install:
     - make build
