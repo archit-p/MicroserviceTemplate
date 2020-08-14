@@ -1,0 +1,10 @@
+language: go
+
+go:
+    - 1.14.x
+
+install:
+    - make build
+
+test:
+    - make test
