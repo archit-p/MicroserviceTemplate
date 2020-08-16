@@ -66,7 +66,7 @@ func (s *SampleMongo) Get(id string) (*models.Sample, error) {
 	filter := bson.D{bson.E{Key: "_id", Value: mongoID}, bson.E{Key: "deleted", Value: false}}
 
 	var res models.Sample
-	err = s.Collection.FindOne(context.TODO(), filter).Decode(res)
+	err = s.Collection.FindOne(context.TODO(), filter).Decode(&res)
 	if err != nil {
 		return nil, err
 	}
