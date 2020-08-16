@@ -115,7 +115,11 @@ func (s *SampleMongo) Delete(id string) (int64, error) {
 // Search (SampleMongo) returns Samples based on keywords
 func (s *SampleMongo) Search(keywords string) (*models.Samples, error) {
 	filter := bson.M{"$text": bson.M{"$search": keywords}}
-	opts := options.Find().SetSort(bson.M{"score": bson.M{"$meta": "textScore"}})
+	opts := options.Find().SetSort(
+		bson.M{"score": bson.M{"$meta": "textScore"}},
+	).SetProjection(
+		bson.M{"score": bson.M{"$meta": "textScore"}},
+	)
 
 	cur, err := s.Collection.Find(context.TODO(), filter, opts)
 	if err != nil {
