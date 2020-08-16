@@ -16,6 +16,6 @@ require (
 	github.com/urfave/cli/v2 v2.2.0 // indirect
 	go.mongodb.org/mongo-driver v1.4.0
 	golang.org/x/net v0.0.0-20200813134508-3edf25e44fcc // indirect
-	golang.org/x/tools v0.0.0-20200814172026-c4923e618c08 // indirect
+	golang.org/x/tools v0.0.0-20200815165600-90abf76919f3 // indirect
 	gopkg.in/yaml.v2 v2.3.0 // indirect
 )

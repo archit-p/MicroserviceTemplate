@@ -3,6 +3,7 @@ package main
 import (
 	"bytes"
 	"net/http"
+	"strconv"
 	"testing"
 
 	"github.com/archit-p/MicroserviceTemplate/pkg/dto"
@@ -182,6 +183,34 @@ func TestUnit_searchSample_fail(t *testing.T) {
 
 	keywords := "first+name"
 	req, err := http.NewRequest(http.MethodGet, "/sample?q="+keywords, nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	rr := executeRequest(req, app.routes())
+	checkResponeCode(t, rr.Code, http.StatusInternalServerError)
+}
+
+func TestUnit_topSamples(t *testing.T) {
+	app := NewMockPassApplication()
+
+	parameter := "likes"
+	limit := 10
+	req, err := http.NewRequest(http.MethodGet, "/sample/top?param="+parameter+"&limit="+strconv.Itoa(limit), nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	rr := executeRequest(req, app.routes())
+	checkResponeCode(t, rr.Code, http.StatusOK)
+}
+
+func TestUnit_topSamples_fail(t *testing.T) {
+	app := NewMockFailApplication()
+
+	parameter := "likes"
+	limit := 10
+	req, err := http.NewRequest(http.MethodGet, "/sample/top?param="+parameter+"&limit="+strconv.Itoa(limit), nil)
 	if err != nil {
 		t.Fatal(err)
 	}

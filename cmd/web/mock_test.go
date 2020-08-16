@@ -34,6 +34,10 @@ func (s *SampleMockFail) Search(keywords string) (*models.Samples, error) {
 	return nil, errors.New("Database error")
 }
 
+func (s *SampleMockFail) Top(parameter string, limit int64) (*models.Samples, error) {
+	return nil, errors.New("Database error")
+}
+
 func NewMockFailApplication() *application {
 	infoLog := log.New(os.Stdout, "INFO\t", log.Ldate|log.Ltime)
 	errorLog := log.New(os.Stderr, "ERROR\t", log.Ldate|log.Ltime|log.Llongfile)
@@ -78,6 +82,22 @@ func (s *SampleMockPass) Search(keywords string) (*models.Samples, error) {
 
 	var res models.Samples
 	res = append(res, resi)
+
+	return &res, nil
+}
+
+func (s *SampleMockPass) Top(parameter string, limit int64) (*models.Samples, error) {
+	resi := models.Sample{
+		Content: "abcd",
+		Created: time.Now(),
+		Deleted: false,
+	}
+
+	var res models.Samples
+	var i int64
+	for i = 0; i < limit; i++ {
+		res = append(res, resi)
+	}
 
 	return &res, nil
 }

@@ -15,6 +15,7 @@ func (app *application) routes() http.Handler {
 
 	router.Use(app.secureHeaders, app.logRequest, app.recoverPanic)
 
+	router.HandleFunc("/sample/top", app.topSamples).Methods(http.MethodGet)
 	router.HandleFunc("/sample/{id}", app.getSample).Methods(http.MethodGet)
 	router.HandleFunc("/sample/{id}", app.updateSample).Methods(http.MethodPut)
 	router.HandleFunc("/sample/{id}", app.deleteSample).Methods(http.MethodDelete)

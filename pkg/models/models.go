@@ -7,6 +7,7 @@ import (
 // Sample represents a simple piece of data
 type Sample struct {
 	Content string    `bson:"content"`
+	Likes   int       `bson:"likes"`
 	Created time.Time `bson:"created"`
 	Deleted bool      `bson:"deleted"`
 }
@@ -22,4 +23,5 @@ type SampleModel interface {
 	Update(id string, content string) (int64, error)
 	Delete(id string) (int64, error)
 	Search(keywords string) (*Samples, error)
+	Top(parameter string, limit int64) (*Samples, error)
 }

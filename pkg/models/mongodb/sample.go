@@ -42,6 +42,7 @@ func NewSampleMongo(client *mongo.Client) (*SampleMongo, error) {
 func (s *SampleMongo) Insert(content string) (string, error) {
 	snip := &models.Sample{
 		Content: content,
+		Likes:   0,
 		Created: time.Now(),
 		Deleted: false,
 	}
@@ -121,6 +122,34 @@ func (s *SampleMongo) Search(keywords string) (*models.Samples, error) {
 		return nil, err
 	}
 	defer cur.Close(context.TODO())
+
+	var res models.Samples
+	for cur.Next(context.TODO()) {
+		var resi models.Sample
+		err = cur.Decode(&resi)
+		if err != nil {
+			return nil, err
+		}
+		res = append(res, resi)
+	}
+
+	if err := cur.Err(); err != nil {
+		return nil, err
+	}
+
+	return &res, nil
+}
+
+// Top (SampleMongo) returns the top Samples based on search field and limit
+func (s *SampleMongo) Top(parameter string, limit int64) (*models.Samples, error) {
+	opts := options.Find().SetSort(bson.M{parameter: 1}).SetLimit(limit)
+	filter := bson.D{}
+
+	cur, err := s.Collection.Find(context.TODO(), filter, opts)
+
+	if err != nil {
+		return nil, err
+	}
 
 	var res models.Samples
 	for cur.Next(context.TODO()) {

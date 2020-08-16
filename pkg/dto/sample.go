@@ -8,6 +8,7 @@ import (
 // Sample represents an incoming request
 type Sample struct {
 	Content string `json:"content"`
+	Likes   int    `json:"likes"`
 }
 
 // FromJSON generates a Sample from given buffer

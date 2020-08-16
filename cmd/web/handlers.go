@@ -2,6 +2,7 @@ package main
 
 import (
 	"net/http"
+	"strconv"
 
 	"github.com/archit-p/MicroserviceTemplate/pkg/dto"
 	"github.com/gorilla/mux"
@@ -150,4 +151,35 @@ func (app *application) searchSample(w http.ResponseWriter, r *http.Request) {
 
 	s.ToJSON(w)
 	app.infoLog.Printf("Searched : %s", keywords)
+}
+
+// searchSample godoc
+// @Summary Find top Samples
+// @Description Top samples based on parameter and limit
+// @Tags samples
+// @Accept  json
+// @Produce  json
+// @Param param query string true "Parameter to sort by"
+// @Param limit query int64 true "Number of results to limit to"
+// @Success 200 {object} dto.Samples
+// @Router /sample/top [get]
+func (app *application) topSamples(w http.ResponseWriter, r *http.Request) {
+	param := r.URL.Query().Get("param")
+	limit, err := strconv.ParseInt(r.URL.Query().Get("limit"), 10, 64)
+	if err != nil {
+		app.clientError(w, http.StatusBadRequest)
+		return
+	}
+
+	res, err := app.samples.Top(param, limit)
+	if err != nil {
+		app.serverError(w, err)
+		return
+	}
+
+	var s dto.Samples
+	copier.Copy(&s, res)
+
+	s.ToJSON(w)
+	app.infoLog.Printf("Top results : %s : %d", param, limit)
 }
