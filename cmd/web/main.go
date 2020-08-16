@@ -9,7 +9,7 @@ import (
 	"os/signal"
 	"time"
 
-	"github.com/archit-p/MicroserviceTemplate/pkg/models"
+	"github.com/archit-p/MicroserviceTemplate/pkg/models/common"
 	"github.com/archit-p/MicroserviceTemplate/pkg/models/mongodb"
 
 	"go.mongodb.org/mongo-driver/mongo"
@@ -21,11 +21,11 @@ import (
 type application struct {
 	errorLog *log.Logger
 	infoLog  *log.Logger
-	samples  models.SampleModel
+	samples  common.SampleModel
 }
 
 // newApplication creates an application with given parameters
-func newApplication(errorLog, infoLog *log.Logger, samples models.SampleModel) *application {
+func newApplication(errorLog, infoLog *log.Logger, samples common.SampleModel) *application {
 	return &application{
 		errorLog: errorLog,
 		infoLog:  infoLog,

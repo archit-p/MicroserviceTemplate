@@ -14,14 +14,3 @@ type Sample struct {
 
 // Samples are a slice of Sample
 type Samples []Sample
-
-// SampleModel is an interface for interacting with
-// databases
-type SampleModel interface {
-	Insert(content string) (string, error)
-	Get(id string) (*Sample, error)
-	Update(id string, content string) (int64, error)
-	Delete(id string) (int64, error)
-	Search(keywords string) (*Samples, error)
-	Top(parameter string, limit int64) (*Samples, error)
-}
