@@ -1,7 +1,8 @@
 [![Build Status](https://img.shields.io/travis/archit-p/MicroserviceTemplate)](https://travis-ci.org/archit-p/MicroserviceTemplate)
 [![Go Report Card](https://goreportcard.com/badge/github.com/archit-p/MicroserviceTemplate)](https://goreportcard.com/report/github.com/archit-p/MicroserviceTemplate)
-![Codacy grade](https://img.shields.io/codacy/grade/6ab701e403dd4aa39544b6b72be52506)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=MicroserviceTemplate&metric=alert_status)](https://sonarcloud.io/dashboard?id=MicroserviceTemplate)  
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/6ab701e403dd4aa39544b6b72be52506)](https://www.codacy.com/manual/archit-p/MicroserviceTemplate?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=archit-p/MicroserviceTemplate&amp;utm_campaign=Badge_Grade)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=MicroserviceTemplate&metric=alert_status)](https://sonarcloud.io/dashboard?id=MicroserviceTemplate)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=MicroserviceTemplate&metric=coverage)](https://sonarcloud.io/dashboard?id=MicroserviceTemplate)  
 Go Microservice built using best practices, ideal for use as a starter template. It features an extensible model - Sample - with support for CRUD and Search operations for MongoDB.
 
 ## References
