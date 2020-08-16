@@ -13,6 +13,4 @@ script:
 
 install:
     - make build
-
-test:
     - make test
